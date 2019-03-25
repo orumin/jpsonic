@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.9
 
 LABEL description="Jpsonic is a free, web-based media streamer, providing ubiquitious access to your music." \
       url="https://github.com/tesshucom/jpsonic" \
@@ -19,13 +19,14 @@ RUN apk --no-cache add \
     tini \
     curl \
     openjdk8-jre \
+    nss \
  && apk add --no-cache --virtual .build-deps \
     maven \
     openjdk8 \
     git \
- && git clone https://github.com/tesshucom/jpsonic \
+ && git clone https://github.com/jpsonic/jpsonic \
  && cd jpsonic \
- && git checkout v2.2.6 \
+ && git checkout v100.0.0 \
  && mvn clean package -Dmaven.test.skip=true \
  && mv jpsonic-main/target/jpsonic.war $JPSONIC_DIR/jpsonic.war \
  && cd .. \
@@ -35,8 +36,6 @@ RUN apk --no-cache add \
 COPY run.sh /usr/local/bin/run.sh
 
 RUN chmod +x /usr/local/bin/run.sh
-
-#COPY target/dependency/jpsonic-main.war jpsonic.war
 
 EXPOSE $JPSONIC_PORT
 
