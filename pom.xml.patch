@@ -1,0 +1,21 @@
+--- pom.xml.orig	2019-07-25 22:20:14.272065363 +0900
++++ pom.xml	2019-07-25 22:19:57.840262648 +0900
+@@ -29,13 +29,13 @@
+         </repository>
+         <repository>
+             <id>java_net</id>
+-            <name>download.java.net</name>
+-            <url>https://download.java.net/maven/2/</url>
++            <name>maven.java.net</name>
++            <url>https://maven.java.net/content/groups/public/</url>
+         </repository>
+         <repository>
+-            <id>teleal</id>
+-            <name>teleal</name>
+-            <url>http://teleal.org/m2</url>
++            <id>4thline</id>
++            <name>4thline</name>
++            <url>http://4thline.org/m2</url>
+         </repository>
+         <repository>
+             <id>jaudiotagger-repository</id>
