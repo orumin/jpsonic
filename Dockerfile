@@ -28,7 +28,7 @@ RUN apk --no-cache add \
     git \
  && git clone https://github.com/jpsonic/jpsonic \
  && cd jpsonic \
- && git checkout v103.0.0 \
+ && git checkout v103.0.1 \
  && patch -p0 < ../pom.xml.patch \
  && mvn clean package -Dmaven.test.skip=true \
  && mv jpsonic-main/target/jpsonic.war $JPSONIC_DIR/jpsonic.war \
