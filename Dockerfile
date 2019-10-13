@@ -4,6 +4,8 @@ LABEL description="Jpsonic is a free, web-based media streamer, providing ubiqui
       url="https://github.com/tesshucom/jpsonic" \
       maintainer="https://github.com/orumin/jpsonic"
 
+ARG VERSION=v105.1.0
+
 ENV JPSONIC_PORT=4040 JPSONIC_DIR=/jpsonic CONTEXT_PATH=/
 
 WORKDIR $JPSONIC_DIR
@@ -26,7 +28,7 @@ RUN apk --no-cache add \
     git \
  && git clone https://github.com/jpsonic/jpsonic \
  && cd jpsonic \
- && git checkout v105.0.0 \
+ && git checkout $VERSION \
  && mvn clean package -Dmaven.test.skip=true \
  && mv jpsonic-main/target/jpsonic.war $JPSONIC_DIR/jpsonic.war \
  && cd .. \
