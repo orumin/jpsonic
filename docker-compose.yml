@@ -3,7 +3,7 @@ version: '3'
 services:
   jpsonic:
     build: .
-    image: orumin/jpsonic:107.0.0
+    image: orumin/jpsonic:107.2.0
     container_name: jpsonic
     env_file: .env.web
     ports:
@@ -30,7 +30,7 @@ services:
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres"]
+      test: ["CMD", "pg_isready", "-U", "jpsonic"]
     volumes:
       - ./postgres:/var/lib/postgresql/data
     networks:
