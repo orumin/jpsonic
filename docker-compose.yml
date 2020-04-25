@@ -3,7 +3,7 @@ version: '3'
 services:
   jpsonic:
     build: .
-    image: orumin/jpsonic:107.2.0
+    image: orumin/jpsonic:108.0.0
     container_name: jpsonic
     env_file: .env.web
     ports:
