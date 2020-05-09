@@ -2,7 +2,8 @@
 # README.md
 # orumin/jpsonic
 -->
-![](https://img.shields.io/docker/automated/orumin/jpsonic.svg?style#flat-square)
+![](https://img.shields.io/docker/cloud/automated/orumin/jpsonic.svg?style#flat-square)
+![](https://img.shields.io/docker/cloud/build/orumin/jpsonic.svg?style#flat-square)
 ![](https://img.shields.io/microbadger/image-size/orumin/jpsonic.svg?style#flat-square)
 ![](https://img.shields.io/microbadger/layers/orumin/jpsonic.svg?style#flat-square)
 
