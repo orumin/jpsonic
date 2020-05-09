@@ -4,7 +4,7 @@ LABEL description="Jpsonic is a free, web-based media streamer, providing ubiqui
       url="https://github.com/tesshucom/jpsonic" \
       maintainer="https://github.com/orumin/jpsonic"
 
-ARG VERSION=v108.0.0
+ARG VERSION=v109.0.0
 
 ENV JPSONIC_PORT=4040 JPSONIC_DIR=/jpsonic CONTEXT_PATH=/
 
