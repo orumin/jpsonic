@@ -14,7 +14,7 @@ RUN git clone https://github.com/jpsonic/jpsonic \
  && cd jpsonic \
  && git checkout $VERSION \
  && patch -p1 < /maven-compiler-plugin.patch \
- && mvn clean package -Dmaven.test.skip=true
+ && mvn clean package -Pjetty-embed -Dmaven.test.skip=true
 
 FROM alpine:3.12
 
@@ -36,7 +36,7 @@ RUN apk --no-cache add \
     ca-certificates \
     tini \
     curl \
-    openjdk11-jre-headless \
+    openjdk11-jre \
     nss
 
 COPY --from=jpsonic-build /jpsonic/jpsonic-main/target/jpsonic.war $JPSONIC_DIR/jpsonic.war
