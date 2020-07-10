@@ -1,10 +1,26 @@
-FROM alpine:3.11
+FROM alpine:3.12 AS jpsonic-build
+
+ARG VERSION=v109.1.0
+
+RUN apk add --no-cache \
+    maven \
+    patch \
+    openjdk11-jdk \
+    git
+
+COPY maven-compiler-plugin.patch /
+
+RUN git clone https://github.com/jpsonic/jpsonic \
+ && cd jpsonic \
+ && git checkout $VERSION \
+ && patch -p1 < /maven-compiler-plugin.patch \
+ && mvn clean package -Dmaven.test.skip=true
+
+FROM alpine:3.12
 
 LABEL description="Jpsonic is a free, web-based media streamer, providing ubiquitious access to your music." \
       url="https://github.com/tesshucom/jpsonic" \
       maintainer="https://github.com/orumin/jpsonic"
-
-ARG VERSION=v109.1.0
 
 ENV JPSONIC_PORT=4040 JPSONIC_DIR=/jpsonic CONTEXT_PATH=/
 
@@ -20,20 +36,10 @@ RUN apk --no-cache add \
     ca-certificates \
     tini \
     curl \
-    openjdk8-jre \
-    nss \
- && apk add --no-cache --virtual .build-deps \
-    maven \
-    openjdk8 \
-    git \
- && git clone https://github.com/jpsonic/jpsonic \
- && cd jpsonic \
- && git checkout $VERSION \
- && mvn clean package -Dmaven.test.skip=true \
- && mv jpsonic-main/target/jpsonic.war $JPSONIC_DIR/jpsonic.war \
- && cd .. \
- && rm -rf /root/.m2 $JPSONIC_DIR/jpsonic \
- && apk del --purge .build-deps
+    openjdk11-jre-headless \
+    nss
+
+COPY --from=jpsonic-build /jpsonic/jpsonic-main/target/jpsonic.war $JPSONIC_DIR/jpsonic.war
 
 COPY run.sh /usr/local/bin/run.sh
 
