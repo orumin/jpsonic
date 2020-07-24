@@ -8,13 +8,10 @@ RUN apk add --no-cache \
     openjdk11-jdk \
     git
 
-COPY maven-compiler-plugin.patch /
-
 RUN git clone https://github.com/jpsonic/jpsonic \
  && cd jpsonic \
  && git checkout $VERSION \
- && patch -p1 < /maven-compiler-plugin.patch \
- && mvn clean package -Pjetty-embed -Dmaven.test.skip=true
+ && mvn clean package -Prelease11 -Pjetty-embed -Dmaven.test.skip=true -Dpmd.skip=true
 
 FROM alpine:3.12
 
