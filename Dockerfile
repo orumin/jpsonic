@@ -1,6 +1,6 @@
 FROM alpine:3.12 AS jpsonic-build
 
-ARG VERSION=v109.3.0
+ARG VERSION=v109.4.0
 
 RUN apk add --no-cache \
     maven \
