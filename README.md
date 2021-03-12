@@ -24,17 +24,17 @@ What is this repo?
 How to use?
 -----------
 
-`.env.web.sample` を `.env.web` に，`.env.db.sample` を `.env.db` にリネームしてから
+`.env.web.sample` を `.env.web` にリネームしてから
 
 ```sh
 docker-compose up -d
 ```
 
-とすれば PostgreSQL を DB に設定し起動できます。
+とすれば HSQLDB を使ってアプリが起動します。
 
-もしデフォルトの内蔵 DB（HSQLDB）を使用したければ，
+もし PostgreSQL を DB として起動したければ、
 
-* 環境変数を設定しない（env_file の行を `docker-compose.yml` から削除）
-* db コンテナを `docker-compose.yml` から削除
+- `.env.web.sample` の代わりに `.env.web.sample_psql` を使う
+- `docker-compose.yml` のコメントアウトされている行頭の `#` を消す
 
-の二項を実行すれば良いです。
+とすれば利用可能です。

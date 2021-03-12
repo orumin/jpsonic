@@ -3,7 +3,7 @@ version: '3'
 services:
   jpsonic:
     build: .
-    image: orumin/jpsonic:109.4.0
+    image: orumin/jpsonic:109.5.0
     container_name: jpsonic
     env_file: .env.web
     ports:
@@ -19,25 +19,25 @@ services:
       - ./music:/jpsonic/music
     networks:
       - external_network
-      - internal_network
-    depends_on:
-      - db
+#      - internal_network
+#    depends_on:
+#      - db
     restart: always
 
-  db:
-    image: postgres:12-alpine
-    env_file: .env.db
-    ports:
-      - "5432:5432"
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "jpsonic"]
-    volumes:
-      - ./postgres:/var/lib/postgresql/data
-    networks:
-      - internal_network
-    restart: always
+#  db:
+#    image: postgres:12-alpine
+#    env_file: .env.db
+#    ports:
+#      - "5432:5432"
+#    healthcheck:
+#      test: ["CMD", "pg_isready", "-U", "jpsonic"]
+#    volumes:
+#      - ./postgres:/var/lib/postgresql/data
+#    networks:
+#      - internal_network
+#    restart: always
 
 networks:
   external_network:
-  internal_network:
-    internal: true
+#  internal_network:
+#    internal: true
